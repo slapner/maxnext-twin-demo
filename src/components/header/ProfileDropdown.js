@@ -5,23 +5,15 @@ import { css, cx } from '@emotion/css';
 import { useState } from 'react';
 
 const dropdownClasses = {
-	enter: cx(css(tw`transition ease-out duration-100`)),
-	enterFrom: cx(css(tw`transform opacity-0 scale-95`)),
-	enterTo: cx(css(tw`transform opacity-100 scale-100`)),
-	leave: cx(css(tw`transition ease-in duration-75`)),
-	leaveFrom: cx(css(tw`transform opacity-100 scale-100`)),
-	leaveTo: cx(css(tw`transform opacity-0 scale-95`)),
+	enter: cx(css(tw`transition duration-100 ease-out`)),
+	enterFrom: cx(css(tw`transform scale-95 opacity-0`)),
+	enterTo: cx(css(tw`transform scale-100 opacity-100`)),
+	leave: cx(css(tw`transition duration-75 ease-in`)),
+	leaveFrom: cx(css(tw`transform scale-100 opacity-100`)),
+	leaveTo: cx(css(tw`transform scale-95 opacity-0`)),
 };
 
-const MenuItem = ({ children }) => (
-	<a
-		href="/"
-		tw="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
-		role="menuitem"
-	>
-		{children}
-	</a>
-);
+const MenuItem = tw.a`block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100`;
 
 export default function ProfileDropdown() {
 	const [isOpen, setIsOpen] = useState(false);

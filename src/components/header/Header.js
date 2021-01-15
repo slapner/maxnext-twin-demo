@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 import logo from '../../maxexlogo.webp';
 import ProfileDropdown from './ProfileDropdown';
@@ -40,7 +40,7 @@ const BellIcon = () => (
 
 export default function Header() {
 	return (
-		<header tw="bg-white shadow w-screen">
+		<header tw="bg-white shadow w-screen relative">
 			<div tw="w-screen mx-auto px-6 lg:divide-y lg:divide-gray-200">
 				<div tw="relative h-16 flex justify-between">
 					<div tw="relative z-10 px-2 flex lg:px-0">
@@ -78,36 +78,20 @@ export default function Header() {
 					</div>
 				</div>
 				<nav tw="hidden lg:py-2 lg:flex lg:space-x-8" aria-label="Global">
-					{/* Current: "bg-gray-100 text-gray-900", Default: "text-gray-900 hover:bg-gray-50 hover:text-gray-900"  */}
-					<a
-						href="/"
-						tw="bg-gray-100 text-gray-900 rounded-md py-2 px-3 inline-flex items-center text-sm font-medium"
-					>
-						Dashboard
-					</a>
-
-					<a
-						href="/"
-						tw="text-gray-900 hover:bg-gray-50 hover:text-gray-900 rounded-md py-2 px-3 inline-flex items-center text-sm font-medium"
-					>
-						Team
-					</a>
-
-					<a
-						href="/"
-						tw="text-gray-900 hover:bg-gray-50 hover:text-gray-900 rounded-md py-2 px-3 inline-flex items-center text-sm font-medium"
-					>
-						Projects
-					</a>
-
-					<a
-						href="/"
-						tw="text-gray-900 hover:bg-gray-50 hover:text-gray-900 rounded-md py-2 px-3 inline-flex items-center text-sm font-medium"
-					>
-						Calendar
-					</a>
+					<SecondaryNavItem href="/">Home</SecondaryNavItem>
+					<SecondaryNavItem isActive href="/">
+						Flow Trades
+					</SecondaryNavItem>
+					<SecondaryNavItem href="/">Bulk Trades</SecondaryNavItem>
+					<SecondaryNavItem href="/">Account Management</SecondaryNavItem>
 				</nav>
 			</div>
 		</header>
 	);
 }
+
+const SecondaryNavItem = styled.a(({ isActive }) => [
+	tw`inline-flex items-center px-3 py-2 text-sm font-medium text-gray-900 rounded-md`,
+	isActive && tw`bg-gray-100`,
+	!isActive && tw`hover:bg-gray-50 hover:text-gray-900`,
+]);
